@@ -6,7 +6,6 @@ The following processes are run in their own docker containers
 * mongodb 
 * elasticsearch 
 * graylog
-* graylog-web 
 
 ## Example for using Docker secrets in a Docker Swarm service:
 
