@@ -62,5 +62,10 @@ docker-compose down
 docker system prune -a
 ```
 
+## List containers
+```bash
+sudo docker system df -v
+```
+
 # License
 Apache License 2.0
