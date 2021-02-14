@@ -7,15 +7,15 @@ services:
       - graylog
     volumes:
       - type: volume
-        source: docker-graylog_mongo_data
-        target: /usr/share/mongo/data/
+        source: mongo_data
+        target: /data/db
     restart: unless-stopped
   # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/6.x/docker.html
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.10
     volumes:
       - type: volume
-        source: docker-graylog_es_data
+        source: es_data
         target: /usr/share/elasticsearch/data
     environment:
       - http.host=0.0.0.0
@@ -38,7 +38,7 @@ services:
     image: graylog/graylog:4.0
     volumes:
       - type: volume
-        source: docker-graylog_graylog_data
+        source: graylog_data
         target: /usr/share/graylog/data
     environment:
       # CHANGE ME (must be at least 16 characters)!
@@ -72,12 +72,12 @@ networks:
     driver: bridge
 # Volumes for persisting data, see https://docs.docker.com/engine/admin/volumes/volumes/
 volumes:
-  docker-graylog_mongo_data:
+  mongo_data:
     driver: local
     # external: true
-  docker-graylog_es_data:
+  es_data:
     driver: local
     # external: true
-  docker-graylog_graylog_data:
+  graylog_data:
     driver: local
     # external: true
