@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 services:
   # MongoDB: https://hub.docker.com/_/mongo/
   mongo:
@@ -67,10 +67,14 @@ services:
       # GELF UDP
       - 12201:12201/udp
     restart: unless-stopped
+
+# Bridge the graylog network
 networks:
   graylog:
     driver: bridge
+
 # Volumes for persisting data, see https://docs.docker.com/engine/admin/volumes/volumes/
+# and https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
 volumes:
   mongo_data:
     driver: local
