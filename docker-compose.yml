@@ -48,8 +48,8 @@ services:
       # Password: password
       - GRAYLOG_ROOT_PASSWORD_SHA2=5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
       # Change to the IP address of the machine
-      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
-      - GRAYLOG_HTTP_PUBLISH_URI=http://127.0.0.1:9000/
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://${DOCKER_GATEWAY_HOST:-host.docker.internal}:9000/
+      - GRAYLOG_HTTP_PUBLISH_URI=http://${DOCKER_GATEWAY_HOST:-host.docker.internal}:9000/
     networks:
       - graylog
     depends_on:
