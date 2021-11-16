@@ -1,5 +1,5 @@
 Versions
 
-Graylog: 		4.0
-MongoDB: 		4.2
-ElasticSearch: 	7.8.1
+Graylog: 		4.2
+MongoDB: 		4.4
+ElasticSearch: 	7.14.2

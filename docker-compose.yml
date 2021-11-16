@@ -2,7 +2,7 @@ version: '3.5'
 services:
   # MongoDB: https://hub.docker.com/_/mongo/
   mongo:
-    image: mongo:latest
+    image: mongo:4.4
     networks:
       - graylog
     volumes:
@@ -77,11 +77,5 @@ networks:
 # and https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
 volumes:
   mongo_data:
-    driver: local
-    # external: true
   es_data:
-    driver: local
-    # external: true
   graylog_data:
-    driver: local
-    # external: true
