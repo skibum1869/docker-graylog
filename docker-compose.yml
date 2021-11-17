@@ -1,38 +1,5 @@
 version: '3.5'
 services:
-  
-  # Graylog: https://hub.docker.com/r/graylog/graylog/
-  graylog:
-    image: graylog/graylog:4.2
-    volumes:
-      - type: volume
-        source: graylog_data
-        target: /usr/share/graylog/data
-    environment:
-      # CHANGE ME (must be at least 16 characters)!
-      - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
-      # Password: password
-      - GRAYLOG_ROOT_PASSWORD_SHA2=5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-      # Change to the IP address of the machine
-      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
-      - GRAYLOG_HTTP_PUBLISH_URI=http://127.0.0.1:9000/
-    networks:
-      - graylog
-    depends_on:
-      - mongo
-      - elasticsearch
-    ports:
-      # Graylog web interface and REST API
-      - 9000:9000
-      # Syslog TCP
-      - 1514:1514
-      # Syslog UDP
-      - 1514:1514/udp
-      # GELF TCP
-      - 12201:12201
-      # GELF UDP
-      - 12201:12201/udp
-    restart: unless-stopped
 
   # MongoDB: https://hub.docker.com/_/mongo/
   mongo:
@@ -69,6 +36,39 @@ services:
       - graylog
     restart: unless-stopped
 
+  # Graylog: https://hub.docker.com/r/graylog/graylog/
+  graylog:
+    image: graylog/graylog:4.2
+    volumes:
+      - type: volume
+        source: graylog_data
+        target: /usr/share/graylog/data
+    environment:
+      # CHANGE ME (must be at least 16 characters)!
+      - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+      # Password: password
+      - GRAYLOG_ROOT_PASSWORD_SHA2=5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+      # Change to the IP address of the machine
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+      - GRAYLOG_HTTP_PUBLISH_URI=http://127.0.0.1:9000/
+    networks:
+      - graylog
+    depends_on:
+      - mongo
+      - elasticsearch
+    ports:
+      # Graylog web interface and REST API
+      - 9000:9000
+      # Syslog TCP
+      - 1514:1514
+      # Syslog UDP
+      - 1514:1514/udp
+      # GELF TCP
+      - 12201:12201
+      # GELF UDP
+      - 12201:12201/udp
+    restart: unless-stopped
+
 # Bridge the graylog network
 networks:
   graylog:
@@ -77,6 +77,6 @@ networks:
 # Volumes for persisting data, see https://docs.docker.com/engine/admin/volumes/volumes/
 # and https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
 volumes:
-  graylog_data:
   mongo_data:
   es_data:
+  graylog_data:
